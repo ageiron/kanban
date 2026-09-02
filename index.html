@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kanban — Personal Board</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- Top bar: brand + global actions (row 1), search & filters (row 2) -->
+  <header class="topbar">
+    <div class="topbar-row">
+      <div class="brand"><span class="brand-mark" aria-hidden="true">&#9638;</span> Kanban</div>
+      <button id="archive-btn" class="btn" type="button">
+        Archive<span id="archive-badge" class="badge" hidden>0</span>
+      </button>
+      <button id="theme-toggle" class="icon-btn icon-btn--lg" type="button" aria-label="Toggle theme">&#9789;</button>
+    </div>
+    <div class="topbar-row">
+      <input id="search-input" class="input search-input" type="search"
+             placeholder="Search cards by title or description&hellip;" aria-label="Search cards">
+      <select id="assignee-filter" class="input assignee-select" aria-label="Filter by assignee">
+        <option value="">All assignees</option>
+      </select>
+      <div id="label-chips" class="label-chips" role="group" aria-label="Filter by label"></div>
+      <div class="new-label-row topbar-new-label">
+        <input id="new-label-name" class="input" placeholder="New label" aria-label="New label name" maxlength="40">
+        <input id="new-label-color" class="color-input" type="color" value="#4f46e5" aria-label="New label colour">
+        <button id="new-label-add" class="btn btn-ghost" type="button">Add label</button>
+      </div>
+      <button id="clear-filters" class="btn btn-ghost" type="button" hidden>Clear filters</button>
+      <span id="match-count" class="match-count" hidden></span>
+    </div>
+  </header>
+
+  <!-- The board itself is rendered by js/board.js -->
+  <main id="board" class="board" aria-label="Kanban board"></main>
+
+  <!-- Archive slide-over panel (content rendered by js/ui/archivePanel.js) -->
+  <aside id="archive-panel" class="archive-panel" hidden aria-label="Archive">
+    <header class="archive-header">
+      <h2>Archive</h2>
+      <button id="archive-close" class="icon-btn" type="button" aria-label="Close archive">&times;</button>
+    </header>
+    <div id="archive-content" class="archive-content"></div>
+  </aside>
+
+  <!-- Mount points for modals and toasts -->
+  <div id="modal-root"></div>
+  <div id="toast-root" class="toast-root" aria-live="polite"></div>
+
+  <!-- Plain scripts (no build step). Order matters: dependencies first. -->
+  <script src="js/constants.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/state.js"></script>
+  <script src="js/filters.js"></script>
+  <script src="js/ui/toast.js"></script>
+  <script src="js/ui/modal.js"></script>
+  <script src="js/ui/cardModal.js"></script>
+  <script src="js/ui/columnDialogs.js"></script>
+  <script src="js/ui/archivePanel.js"></script>
+  <script src="js/ui/filtersBar.js"></script>
+  <script src="js/board.js"></script>
+  <script src="js/theme.js"></script>
+  <script src="js/dnd.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
